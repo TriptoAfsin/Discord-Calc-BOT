@@ -1,4 +1,6 @@
-require('dotenv').config() //npm i dotenv
+require('dotenv').config(); //npm i dotenv
+const express = require('express'); //npm i express
+
 
 const Discord = require('discord.js'); //npm install discord.js
 const client = new Discord.Client();
@@ -8,7 +10,7 @@ const toss = ["Head", "Tail"];
 //function to check login
 client.on('ready', () => {
     console.log(`Bot Name: ${client.user.tag}\nSuccessfully logged in✔`);
-  });
+});
   
 
   //handleing messages
@@ -30,3 +32,5 @@ client.on('message', msg => {
 });
   
 client.login(process.env.BOT_TOKEN);
+
+
