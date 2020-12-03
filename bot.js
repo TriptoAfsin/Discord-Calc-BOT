@@ -28,7 +28,7 @@ client.on('message', msg => {
         //msg.reply(Math.floor(Math.random()*100));
         msg.channel.send(toss[Math.floor(Math.random()*2)]);
       }
-      else if (msg.content === '!rock' || msg.content === '!paper' || msg.content === '!scissor') {
+      else if (msg.content === '!rock' || msg.content === '!paper') {
         //msg.reply(Math.floor(Math.random()*100));
         const cpu = game1[Math.floor(Math.random()*3)];
         if(msg.content === '!rock' && cpu === 'Scissor'){
@@ -59,7 +59,38 @@ client.on('message', msg => {
           msg.channel.send(cpu);
           msg.channel.send("I win 😁");
         }
-        
+      }
+      else if (msg.content === '!scissor') {
+        //msg.reply(Math.floor(Math.random()*100));
+        const cpu = game1[Math.floor(Math.random()*3)];
+        if(msg.content === '!rock' && cpu === 'Scissor'){
+          msg.channel.send(cpu);
+          msg.channel.send("You win 💯");
+        }
+        else if(msg.content === '!paper' && cpu === 'Rock'){
+          msg.channel.send(cpu);
+          msg.channel.send("You win 💯");
+        }
+        else if(msg.content === '!scissor' && cpu === 'Paper'){
+          msg.channel.send(cpu);
+          msg.channel.send("You win 💯");
+        }
+        else if(msg.content === '!paper' && cpu === 'Paper'){
+          msg.channel.send(cpu);
+          msg.channel.send("Draw 😀");
+        }
+        else if(msg.content === '!scissor' && cpu === 'Scissor'){
+          msg.channel.send(cpu);
+          msg.channel.send("Draw 😀");
+        }
+        else if(msg.content === '!rock' && cpu === 'Rock'){
+          msg.channel.send(cpu);
+          msg.channel.send("Draw 😀");
+        }
+        else{
+          msg.channel.send(cpu);
+          msg.channel.send("I win 😁");
+        }
       }
     
 });
