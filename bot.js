@@ -16,8 +16,13 @@ client.on('ready', () => {
 
   //handleing messages
 client.on('message', msg => {
-    if (msg.content === 'Hi') {
-      msg.reply('Hello');
+
+  const greetings = ["hi", "Hi", "Hello", "hello", "hey", "How are you?", "wassup", "whatsup", "whats up", "Whatsup"];
+  const greetReply = ["Hey😀", "Hello", "Hi there😀", "Hi", "Hello😊"];
+
+
+    if (greetings.includes(msg.content)) {
+      msg.reply(greetReply[Math.floor(Math.random()*greetReply.length)]);
       msg.react("🤍")
     }
     else if (msg.content === '!random' || msg.content === '!Random') {
