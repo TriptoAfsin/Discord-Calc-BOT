@@ -9,12 +9,18 @@ const client = new Discord.Client();
 
 const toss = ["Head", "Tail"];
 const dice = [1,2,3,4,5,6];
-const game1 = ["Rock", "Paper", "Scissor"];
+
 
 const greetings = ["hi", "Hi", "Hello", "hello", "hey", "How are you?", "wassup", "whatsup", "whats up", "Whatsup"];
 const greetReply = ["Hey 😀", "Hello", "Hi there 😀", "Hi", "Hello 😊"];
 const rpsGame = ["!rock", "!paper", "!scissor"];
-const helpText = ["!help", "!Help"]
+const game1 = ["Rock", "Paper", "Scissor"];
+const helpText = ["!help", "!Help"];
+const rpsLogic = {
+  '!rock': {weakTo: 'Paper', strongTo: 'Scissor'},
+  '!paper': {weakTo: 'Scissor', strongTo: 'Rock'},
+  '!scissor': {weakTo: 'Rock', strongTo: 'Paper'}
+}
 
 const help = `Commands: \n 1. !toss: does coin toss\n 2. !dice: does dice roll \n 3. !random: gives a random number(1-100)\n 4. !rock, !paper, !scissor : rock, paper, scissor game`;
 
@@ -58,10 +64,12 @@ client.on('message', msg => {
         const cpu = game1[Math.floor(Math.random()*3)];
 
         //user wins
-        if(msg.content === '!rock' && cpu === 'Scissor'){
+        if(rpsLogic[msg.content].strongTo === cpu){
           msg.channel.send(cpu);
           msg.channel.send("You win 💯");
         }
+
+        /*
         else if(msg.content === '!paper' && cpu === 'Rock'){
           msg.channel.send(cpu);
           msg.channel.send("You win 💯");
@@ -70,25 +78,18 @@ client.on('message', msg => {
           msg.channel.send(cpu);
           msg.channel.send("You win 💯");
         }
+        */
 
-        //draws
-        else if(msg.content === '!paper' && cpu === 'Paper'){
-          msg.channel.send(cpu);
-          msg.channel.send("Draw 😀");
-        }
-        else if(msg.content === '!scissor' && cpu === 'Scissor'){
-          msg.channel.send(cpu);
-          msg.channel.send("Draw 😀");
-        }
-        else if(msg.content === '!rock' && cpu === 'Rock'){
-          msg.channel.send(cpu);
-          msg.channel.send("Draw 😀");
-        }
-
-        //bot wins
-        else{
+         //bot wins
+         else if(rpsLogic[msg.content].weakTo === cpu){
           msg.channel.send(cpu);
           msg.channel.send("I win 😁");
+        }
+
+        //draws
+        else{
+          msg.channel.send(cpu);
+          msg.channel.send("Draw 😀");
         }
       }
     
