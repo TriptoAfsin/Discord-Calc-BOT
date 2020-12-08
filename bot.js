@@ -18,7 +18,8 @@ client.on('ready', () => {
 client.on('message', msg => {
 
   const greetings = ["hi", "Hi", "Hello", "hello", "hey", "How are you?", "wassup", "whatsup", "whats up", "Whatsup"];
-  const greetReply = ["Hey😀", "Hello", "Hi there😀", "Hi", "Hello😊"];
+  const greetReply = ["Hey 😀", "Hello", "Hi there 😀", "Hi", "Hello 😊"];
+  const rpsGame = ["!rock", "!paper", "!scissor"];
 
 
     if (greetings.includes(msg.content)) {
@@ -26,15 +27,16 @@ client.on('message', msg => {
       msg.react("🤍")
     }
     else if (msg.content === '!random' || msg.content === '!Random') {
-        //msg.reply(Math.floor(Math.random()*100));
+       
         msg.channel.send(Math.floor(Math.random()*100));
       }
       else if (msg.content === '!toss' || msg.content === '!Toss') {
-        //msg.reply(Math.floor(Math.random()*100));
+        
         msg.channel.send(toss[Math.floor(Math.random()*2)]);
       }
-      else if (msg.content === '!rock' || msg.content === '!paper' || msg.content === '!scissor') {
-        //msg.reply(Math.floor(Math.random()*100));
+
+      //rock, paper , scissor 
+      else if (rpsGame.includes(msg.content)) {
         const cpu = game1[Math.floor(Math.random()*3)];
         if(msg.content === '!rock' && cpu === 'Scissor'){
           msg.channel.send(cpu);
@@ -64,7 +66,6 @@ client.on('message', msg => {
           msg.channel.send(cpu);
           msg.channel.send("I win 😁");
         }
-        
       }
     
 });
