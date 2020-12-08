@@ -14,6 +14,9 @@ const game1 = ["Rock", "Paper", "Scissor"];
 const greetings = ["hi", "Hi", "Hello", "hello", "hey", "How are you?", "wassup", "whatsup", "whats up", "Whatsup"];
 const greetReply = ["Hey 😀", "Hello", "Hi there 😀", "Hi", "Hello 😊"];
 const rpsGame = ["!rock", "!paper", "!scissor"];
+const helpText = ["!help", "!Help"]
+
+const help = `Commands: \n 1. !toss: does coin toss\n 2. !dice: does dice roll \n 3. !random: gives a random number(1-100)\n 4. !rock, !paper, !scissor : rock, paper, scissor game`;
 
 //function to check login
 client.on('ready', () => {
@@ -26,7 +29,11 @@ client.on('message', msg => {
 
     if (greetings.includes(msg.content)) {
       msg.reply(greetReply[Math.floor(Math.random()*greetReply.length)]);
-      msg.react("🤍")
+      msg.react("🤍");
+    }
+
+    else if(helpText.includes(msg.content)){
+      msg.reply(help);
     }
 
     //random
@@ -37,7 +44,7 @@ client.on('message', msg => {
 
     //toss
     else if (msg.content === '!toss' || msg.content === '!Toss') {
-        msg.channel.send(toss[Math.floor(Math.random()*2)]);
+        msg.channel.send(`${toss[Math.floor(Math.random()*2)]}`);
     }
 
     //dice roll
